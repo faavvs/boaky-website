@@ -245,7 +245,7 @@ section {
   font-family: var(--font-display);
   text-transform: none;
   font-size: clamp(1.25rem, 4vw, 1.85rem);
-  color: var(--boaky-pink);
+  color: var(--boaky-gold);
 }
 
 .hero-intro {
@@ -501,7 +501,7 @@ section {
   font-size: 0.8rem;
   font-weight: 400;
   text-transform: none;
-  opacity: 0.6;
+  color: var(--boaky-gold);
 }
 
 .footer-links {
