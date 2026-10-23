@@ -164,15 +164,6 @@ section {
   padding-block: var(--space-xl);
 }
 
-.eyebrow {
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 0.8rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  opacity: 0.75;
-}
-
 /* -- Site header ------------------------------------------------------------- */
 
 .site-header {
@@ -523,7 +514,7 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.6rem;
 }
 
 @media (min-width: 40rem) {
@@ -533,7 +524,7 @@ section {
 }
 
 .footer-brand img {
-  height: 1.6rem;
+  height: 2.75rem;
   width: auto;
 }
 
