@@ -194,7 +194,7 @@ section {
 
 .site-logo img {
   width: auto;
-  height: 2rem;
+  height: 2.75rem;
 }
 
 .header-note {
@@ -258,22 +258,27 @@ section {
 .hero-status {
   margin-top: var(--space-lg);
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.7rem 1.4rem;
-  border-radius: 999px;
+  gap: 0.35rem;
+  padding: 1.1rem 1.75rem;
+  border-radius: 1.25rem;
   background: rgba(241, 236, 216, 0.1);
   border: 1px solid rgba(241, 236, 216, 0.35);
-  font-size: 0.9rem;
-  font-weight: 500;
 }
 
-.hero-status .dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: var(--boaky-gold);
-  flex-shrink: 0;
+.hero-status-primary {
+  font-family: var(--font-display);
+  text-transform: none;
+  font-size: 1.1rem;
+  color: var(--boaky-gold);
+}
+
+.hero-status-secondary {
+  margin-top: 0.15rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0.65;
 }
 
 /* -- Section headings ---------------------------------------------------------- */
@@ -380,36 +385,50 @@ section {
 }
 
 .preview-grid {
-  display: grid;
+  display: flex;
   gap: var(--space-sm);
-  grid-template-columns: repeat(2, 1fr);
-  max-width: 44rem;
-  margin: 0 auto;
-}
-
-@media (min-width: 40rem) {
-  .preview-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: var(--space-xs);
+  margin-inline: calc(-1 * var(--space-sm));
+  padding-inline: var(--space-sm);
 }
 
 .preview-frame {
-  aspect-ratio: 9 / 18.5;
-  border-radius: 1.75rem;
-  border: 2px dashed rgba(241, 236, 216, 0.45);
+  flex: 0 0 auto;
+  width: 11rem;
+  scroll-snap-align: start;
+  border-radius: var(--radius);
+  overflow: hidden;
   background: rgba(241, 236, 216, 0.06);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: var(--space-sm);
 }
 
-.preview-frame span {
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  opacity: 0.6;
+.preview-frame img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+@media (min-width: 40rem) {
+  .preview-frame {
+    width: 13rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .preview-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    overflow: visible;
+    max-width: 68rem;
+    margin: 0 auto;
+    padding-inline: 0;
+  }
+
+  .preview-frame {
+    width: auto;
+  }
 }
 
 /* -- Philosophy ------------------------------------------------------------------ */
@@ -589,7 +608,13 @@ section {
 }
 
 .legal-section {
-  margin-top: var(--space-lg);
+  /* Überschreibt bewusst die generische `section { padding-block:
+     var(--space-xl) }`-Regel oben: Legal-Abschnitte sind kompakte
+     Unterabschnitte innerhalb von .legal-main, keine eigenständigen,
+     vollflächigen Landingpage-Blöcke — normale Dokumentabstände statt
+     7rem Innenabstand pro Abschnitt. */
+  padding-block: 0;
+  margin-top: var(--space-md);
 }
 
 .legal-section h2 {
