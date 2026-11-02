@@ -13,6 +13,17 @@
   <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png" />
   <link rel="stylesheet" href="styles.css" />
+  <noscript>
+    <style>
+      .accordion-panel[hidden] {
+        display: block;
+      }
+
+      .accordion-icon {
+        display: none;
+      }
+    </style>
+  </noscript>
 </head>
 <body>
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
@@ -91,82 +102,208 @@
           </p>
         </div>
 
-        <ul class="pillar-grid">
-          <li class="pillar-card">
-            <span class="pillar-mark" aria-hidden="true">1</span>
-            <h3>My Favs</h3>
-            <p>
-              Die beste Pizza ever, die perfekte Mascara, dein absolutes Hotelhighlight – My Favs sind deine
-              persönlichen Besten der Besten. Die Dinge, auf die du nicht mehr verzichten willst.
-            </p>
-          </li>
-          <li class="pillar-card">
-            <span class="pillar-mark" aria-hidden="true">2</span>
-            <h3>My Picks</h3>
-            <p>
-              Noch kein All-Time-Favorit – aber definitiv gut genug, um ihn nicht wieder zu vergessen. Deine
-              Lieblingscafés in Frankfurt, die richtig gute Sonnencreme aus dem letzten Urlaub oder der eine Wein
-              aus der Toskana, den du wieder kaufen möchtest.
-            </p>
-            <p>My Picks sind deine persönliche Auswahl der guten Dinge, die du wiederfinden möchtest.</p>
-          </li>
-          <li class="pillar-card">
-            <span class="pillar-mark" aria-hidden="true">3</span>
-            <h3>Collections</h3>
-            <p>
-              Deine Essenstipps in Barcelona, deine Lieblingsweine aus Frankreich oder vielleicht auch alle
-              Highlights vom letzten Städtetrip nach Lissabon?
-            </p>
-            <p>
-              Mit Collections kannst du deine My Favs und My Picks nach deinen eigenen Themen zusammenstellen und
-              organisieren.
-            </p>
-          </li>
-          <li class="pillar-card">
-            <span class="pillar-mark" aria-hidden="true">4</span>
-            <h3>Geteilte Collections</h3>
-            <p>
-              Du kennst die besten Matcha-Läden im Land? Dann teile deine Collection mit anderen und inspiriere sie
-              mit deinen Favoriten.
-            </p>
-            <p>
-              Oder tragt eure Favoriten gemeinsam zusammen – zum Beispiel die Highlights vom letzten
-              Mallorca-Urlaub, eure Lieblingsrestaurants in der Stadt oder die Produkte, die immer wieder im
-              Einkaufswagen landen.
-            </p>
-          </li>
-          <li class="pillar-card">
-            <span class="pillar-mark" aria-hidden="true">5</span>
-            <h3>Merkliste</h3>
-            <p>Spannend – aber selbst noch nicht probiert.</p>
-            <p>
-              Speichere Favoriten und Collections anderer Nutzer in deiner Merkliste. So kannst du Empfehlungen
-              später wiederfinden und gemerkte Favoriten anschließend selbst als My Fav oder My Pick in deine
-              eigene Sammlung übernehmen.
-            </p>
-          </li>
-          <li class="pillar-card">
-            <span class="pillar-mark" aria-hidden="true">6</span>
-            <h3>Öffentlich oder privat?</h3>
-            <p>
-              Dein Profil kann privat oder öffentlich sein. Ein privates Profil ist nur für dich sichtbar. Ein
-              öffentliches Profil kann von anderen gefunden werden und zeigt deine öffentlichen Inhalte.
-            </p>
-            <p>
-              Auch Collections können privat oder öffentlich sein. Private Collections siehst nur du und
-              eingeladene Personen. Öffentliche Collections können von anderen BOAKY-Nutzern entdeckt werden.
-            </p>
-          </li>
-          <li class="pillar-card">
-            <span class="pillar-mark" aria-hidden="true">7</span>
-            <h3>Folgen</h3>
-            <p>
-              Du kannst öffentlichen Profilen folgen, deren Geschmack dich interessiert. So findest du deren Faves
-              leichter über die Suche. BOAKY zeigt bewusst keine Follower-Zahlen – es geht um Empfehlungen und
-              Geschmack, nicht um Reichweite.
-            </p>
-          </li>
-        </ul>
+        <div class="accordion">
+          <div class="accordion-item">
+            <h3 class="accordion-heading">
+              <button
+                type="button"
+                class="accordion-trigger"
+                id="feature-trigger-1"
+                aria-expanded="false"
+                aria-controls="feature-panel-1"
+              >
+                <span>My Favs</span>
+                <span class="accordion-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div
+              class="accordion-panel"
+              id="feature-panel-1"
+              role="region"
+              aria-labelledby="feature-trigger-1"
+              hidden
+            >
+              <p>
+                Die beste Pizza ever, die perfekte Mascara, dein absolutes Hotelhighlight – My Favs sind deine
+                persönlichen Besten der Besten. Die Dinge, auf die du nicht mehr verzichten willst.
+              </p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-heading">
+              <button
+                type="button"
+                class="accordion-trigger"
+                id="feature-trigger-2"
+                aria-expanded="false"
+                aria-controls="feature-panel-2"
+              >
+                <span>My Picks</span>
+                <span class="accordion-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div
+              class="accordion-panel"
+              id="feature-panel-2"
+              role="region"
+              aria-labelledby="feature-trigger-2"
+              hidden
+            >
+              <p>
+                Noch kein All-Time-Favorit – aber definitiv gut genug, um ihn nicht wieder zu vergessen. Deine
+                Lieblingscafés in Frankfurt, die richtig gute Sonnencreme aus dem letzten Urlaub oder der eine Wein
+                aus der Toskana, den du wieder kaufen möchtest.
+              </p>
+              <p>My Picks sind deine persönliche Auswahl der guten Dinge, die du wiederfinden möchtest.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-heading">
+              <button
+                type="button"
+                class="accordion-trigger"
+                id="feature-trigger-3"
+                aria-expanded="false"
+                aria-controls="feature-panel-3"
+              >
+                <span>Collections</span>
+                <span class="accordion-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div
+              class="accordion-panel"
+              id="feature-panel-3"
+              role="region"
+              aria-labelledby="feature-trigger-3"
+              hidden
+            >
+              <p>
+                Deine Essenstipps in Barcelona, deine Lieblingsweine aus Frankreich oder vielleicht auch alle
+                Highlights vom letzten Städtetrip nach Lissabon?
+              </p>
+              <p>
+                Mit Collections kannst du deine My Favs und My Picks nach deinen eigenen Themen zusammenstellen und
+                organisieren.
+              </p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-heading">
+              <button
+                type="button"
+                class="accordion-trigger"
+                id="feature-trigger-4"
+                aria-expanded="false"
+                aria-controls="feature-panel-4"
+              >
+                <span>Geteilte Collections</span>
+                <span class="accordion-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div
+              class="accordion-panel"
+              id="feature-panel-4"
+              role="region"
+              aria-labelledby="feature-trigger-4"
+              hidden
+            >
+              <p>
+                Du kennst die besten Matcha-Läden im Land? Dann teile deine Collection mit anderen und inspiriere sie
+                mit deinen Favoriten.
+              </p>
+              <p>
+                Oder tragt eure Favoriten gemeinsam zusammen – zum Beispiel die Highlights vom letzten
+                Mallorca-Urlaub, eure Lieblingsrestaurants in der Stadt oder die Produkte, die immer wieder im
+                Einkaufswagen landen.
+              </p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-heading">
+              <button
+                type="button"
+                class="accordion-trigger"
+                id="feature-trigger-5"
+                aria-expanded="false"
+                aria-controls="feature-panel-5"
+              >
+                <span>Merkliste</span>
+                <span class="accordion-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div
+              class="accordion-panel"
+              id="feature-panel-5"
+              role="region"
+              aria-labelledby="feature-trigger-5"
+              hidden
+            >
+              <p>Spannend – aber selbst noch nicht probiert.</p>
+              <p>
+                Speichere Favoriten und Collections anderer Nutzer in deiner Merkliste. So kannst du Empfehlungen
+                später wiederfinden und gemerkte Favoriten anschließend selbst als My Fav oder My Pick in deine
+                eigene Sammlung übernehmen.
+              </p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-heading">
+              <button
+                type="button"
+                class="accordion-trigger"
+                id="feature-trigger-6"
+                aria-expanded="false"
+                aria-controls="feature-panel-6"
+              >
+                <span>Öffentlich oder privat?</span>
+                <span class="accordion-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div
+              class="accordion-panel"
+              id="feature-panel-6"
+              role="region"
+              aria-labelledby="feature-trigger-6"
+              hidden
+            >
+              <p>
+                Dein Profil kann privat oder öffentlich sein. Ein privates Profil ist nur für dich sichtbar. Ein
+                öffentliches Profil kann von anderen gefunden werden und zeigt deine öffentlichen Inhalte.
+              </p>
+              <p>
+                Auch Collections können privat oder öffentlich sein. Private Collections siehst nur du und
+                eingeladene Personen. Öffentliche Collections können von anderen BOAKY-Nutzern entdeckt werden.
+              </p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-heading">
+              <button
+                type="button"
+                class="accordion-trigger"
+                id="feature-trigger-7"
+                aria-expanded="false"
+                aria-controls="feature-panel-7"
+              >
+                <span>Folgen</span>
+                <span class="accordion-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div
+              class="accordion-panel"
+              id="feature-panel-7"
+              role="region"
+              aria-labelledby="feature-trigger-7"
+              hidden
+            >
+              <p>
+                Du kannst öffentlichen Profilen folgen, deren Geschmack dich interessiert. So findest du deren Faves
+                leichter über die Suche. BOAKY zeigt bewusst keine Follower-Zahlen – es geht um Empfehlungen und
+                Geschmack, nicht um Reichweite.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -237,5 +374,7 @@
       </ul>
     </div>
   </footer>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
