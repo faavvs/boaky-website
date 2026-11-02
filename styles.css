@@ -188,6 +188,12 @@ section {
   height: 2.75rem;
 }
 
+.header-side {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 .header-note {
   font-size: 0.85rem;
   font-weight: 500;
@@ -198,12 +204,26 @@ section {
   white-space: nowrap;
 }
 
+.header-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--boaky-cream);
+  opacity: 0.85;
+  text-decoration: none;
+}
+
+.header-social:hover,
+.header-social:focus-visible {
+  opacity: 1;
+}
+
 /* -- Hero ---------------------------------------------------------------------- */
 
 .hero {
   background: var(--boaky-blue);
   color: var(--boaky-cream);
-  padding-block: var(--space-xl) calc(var(--space-xl) * 1.1);
+  padding-block: var(--space-lg) calc(var(--space-lg) * 1.15);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -227,7 +247,7 @@ section {
 }
 
 .hero-wordmark img {
-  width: clamp(13rem, 50vw, 24rem);
+  width: clamp(11rem, 40vw, 19rem);
   margin-inline: auto;
 }
 
@@ -247,12 +267,12 @@ section {
 }
 
 .hero-status {
-  margin-top: var(--space-lg);
+  margin-top: var(--space-md);
   display: inline-flex;
   flex-direction: column;
   align-items: center;
   gap: 0.35rem;
-  padding: 1.1rem 1.75rem;
+  padding: 0.9rem 1.5rem;
   border-radius: 1.25rem;
   background: rgba(241, 236, 216, 0.1);
   border: 1px solid rgba(241, 236, 216, 0.35);
@@ -310,8 +330,13 @@ section {
 }
 
 @media (min-width: 64rem) {
+  /* auto-fill statt einer festen Spaltenzahl: passt sich der verfügbaren
+     Breite an, ohne die letzte (unvollständige) Reihe künstlich auf die
+     volle Breite zu strecken (auto-fill behält leere Spuren, anders als
+     auto-fit) - bei sieben Kacheln bleibt die Anordnung dadurch immer ein
+     "echtes" Grid statt erzwungener Symmetrie. */
   .pillar-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   }
 }
 
@@ -338,17 +363,19 @@ section {
   background: var(--boaky-blue);
 }
 
-.pillar-card:nth-child(2) .pillar-mark {
+/* Vierer-Farbzyklus (statt fester 2./3./4. Kachel), damit das bestehende
+   Farbprinzip auch bei sieben (oder künftig mehr) Kacheln weiterläuft. */
+.pillar-card:nth-child(4n + 2) .pillar-mark {
   background: var(--boaky-gold);
   color: var(--boaky-blue);
 }
 
-.pillar-card:nth-child(3) .pillar-mark {
+.pillar-card:nth-child(4n + 3) .pillar-mark {
   background: var(--boaky-pink);
   color: var(--boaky-blue);
 }
 
-.pillar-card:nth-child(4) .pillar-mark {
+.pillar-card:nth-child(4n) .pillar-mark {
   background: var(--white);
   color: var(--boaky-blue);
   border: 2px solid rgba(28, 45, 174, 0.35);
