@@ -1,0 +1,19 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["3Q4B6X6YFR.de.boaky.app"],
+        "components": [
+          {
+            "/": "/auth/confirm",
+            "comment": "Supabase signup confirmation"
+          },
+          {
+            "/": "/auth/reset-password",
+            "comment": "Supabase password recovery"
+          }
+        ]
+      }
+    ]
+  }
+}
