@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BOAKY – E-Mail-Adresse ändern</title>
+  <!-- Auth-Fallback: keine Indexierung, und Query/Fragment (Tokens) nie als
+       Referrer weitergeben. -->
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="referrer" content="no-referrer" />
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .auth-open {
+      display: inline-block;
+      margin-top: var(--space-md);
+      padding: 0.9rem 1.75rem;
+      border-radius: 999px;
+      background: var(--boaky-blue);
+      color: var(--boaky-cream);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .auth-open:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="site-logo" href="/">
+        <img
+          src="/assets/img/boaky-logo-primary.png"
+          alt="BOAKY"
+          width="1672"
+          height="940"
+        />
+      </a>
+    </div>
+  </header>
+
+  <main id="main" class="legal-main">
+    <div class="container">
+      <h1>E-Mail-Adresse ändern</h1>
+
+      <!-- Genau einer dieser Abschnitte ist sichtbar. Ohne JavaScript bleibt
+           der neutrale "unknown"-Text stehen. Alle Texte sind fest; aus der
+           URL wird nie etwas in die Seite geschrieben. -->
+      <div data-state="unknown">
+        <p class="legal-intro">
+          Öffne diesen Link auf deinem Smartphone mit BOAKY, um die Änderung
+          deiner E-Mail-Adresse abzuschließen. Deine aktuelle E-Mail-Adresse
+          siehst du in BOAKY unter Einstellungen.
+        </p>
+      </div>
+      <div data-state="partial" hidden>
+        <p class="legal-intro">
+          Die erste Bestätigung ist erfolgt. Bitte öffne jetzt auch den Link in
+          der zweiten E-Mail – wir haben je eine Nachricht an deine bisherige
+          und an deine neue Adresse geschickt. Erst danach wird deine
+          E-Mail-Adresse geändert.
+        </p>
+      </div>
+      <div data-state="completed" hidden>
+        <p class="legal-intro">
+          Deine E-Mail-Adresse wurde geändert. Ab sofort meldest du dich mit
+          deiner neuen Adresse bei BOAKY an.
+        </p>
+      </div>
+      <div data-state="invalid" hidden>
+        <p class="legal-intro">
+          Dieser Link ist ungültig oder abgelaufen. Möglicherweise wurde er
+          bereits verwendet. Prüfe deine E-Mail-Adresse in BOAKY unter
+          Einstellungen und starte die Änderung bei Bedarf erneut.
+        </p>
+      </div>
+
+      <a class="auth-open" id="open-in-app" href="boaky://auth/email-change">In BOAKY öffnen</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-brand">
+        <img
+          src="/assets/img/boaky-logo-primary.png"
+          alt="BOAKY"
+          width="1672"
+          height="940"
+        />
+        <span>Deine Favoriten. An einem Ort.</span>
+      </p>
+      <ul class="footer-links">
+        <li><a href="/support.html">Support</a></li>
+        <li><a href="/datenschutz.html">Datenschutz</a></li>
+        <li><a href="/account-loeschen.html">Account löschen</a></li>
+        <li><a href="/impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var search = window.location.search;
+      var hash = window.location.hash;
+
+      // Query (z. B. künftig token_hash, type) und Fragment (z. B.
+      // access_token, message, error_code) unverändert an das App-Scheme
+      // durchreichen.
+      document.getElementById("open-in-app").href =
+        "boaky://auth/email-change" + search + hash;
+
+      // Zustand nur aus Schlüsseln bzw. festen Werten ableiten – Token-Werte
+      // werden nie gelesen, angezeigt, geloggt oder versendet.
+      // Supabase (Implicit Flow) leitet nach /auth/v1/verify so weiter:
+      //   1. von 2 Bestätigungen: #message=Confirmation link accepted. ...
+      //   abgeschlossen:          #access_token=...&type=email_change
+      //   Fehler:                 #error=...&error_code=...
+      var fragment = new URLSearchParams(hash.replace(/^#/, ""));
+      var query = new URLSearchParams(search);
+      function get(key) {
+        return fragment.get(key) || query.get(key);
+      }
+
+      var state = "unknown";
+      var message = get("message") || "";
+      if (get("error") || get("error_code")) {
+        state = "invalid";
+      } else if (fragment.has("access_token") && get("type") === "email_change") {
+        state = "completed";
+      } else if (message.indexOf("Confirmation link accepted") === 0) {
+        state = "partial";
+      }
+
+      var sections = document.querySelectorAll("[data-state]");
+      for (var i = 0; i < sections.length; i++) {
+        sections[i].hidden = sections[i].getAttribute("data-state") !== state;
+      }
+
+      // Token aus Adresszeile und Browser-Verlauf entfernen. Der Button
+      // oben hat die vollständige URL bereits übernommen.
+      if ((search || hash) && window.history && window.history.replaceState) {
+        window.history.replaceState(null, "", window.location.pathname);
+      }
+    })();
+  </script>
+</body>
+</html>

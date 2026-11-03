@@ -11,6 +11,10 @@
           {
             "/": "/auth/reset-password",
             "comment": "Supabase password recovery"
+          },
+          {
+            "/": "/auth/email-change",
+            "comment": "Supabase email change confirmation"
           }
         ]
       }
